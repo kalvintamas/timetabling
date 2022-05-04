@@ -1,4 +1,4 @@
-package org.acme
+package org.acme.data
 
 import io.quarkus.runtime.StartupEvent
 import org.acme.domain.Student
@@ -37,7 +37,7 @@ class DemoDataGenerator {
 
     private val studentsData: List<List<Any>> = listOf(
         listOf("Kiss Péter", 0, 11),
-        listOf("Nagy Zsolt", 1, 11),
+        listOf("Nagy Zsolt", 7, 11),
         listOf("Kerek Zsófia", 0, 5),
         listOf("Szép Áron", 2, 12),
         listOf("Kövér László", 0, 12),
@@ -93,7 +93,7 @@ class DemoDataGenerator {
             Timeslot(
                 (DayOfWeek.MONDAY + list[0].toLong()) as DayOfWeek,
                 LocalTime.of(list[1], list[2]),
-                LocalTime.of(list[3],list[4]), null)
+                LocalTime.of(list[3],list[4]),)
         }
         timeslotRepository.persist(timeslots)
     }
@@ -102,8 +102,9 @@ class DemoDataGenerator {
         val students: List<Student> = studentsData.map { list ->
             Student(
                 list[0] as String,
-                timeslotRepository.listAll().subList(list[1] as Int, list[2] as Int).toMutableList()
-            )
+                timeslotRepository.listAll().subList(list[1] as Int, list[2] as Int).toMutableList(),
+//                (list[1] as Int .. list[2] as Int).toList(),
+                )
         }
         studentRepository.persist(students)
     }

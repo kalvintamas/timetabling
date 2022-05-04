@@ -1,4 +1,4 @@
-package org.acme
+package org.acme.resources
 
 import org.acme.domain.TimeTable
 import org.acme.persistence.StudentRepository

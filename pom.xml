@@ -8,7 +8,7 @@
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
-    <kotlin.version>1.6.10</kotlin.version>
+    <kotlin.version>1.6.21</kotlin.version>
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -87,6 +87,17 @@
       <artifactId>kotlin-extensions</artifactId>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-jdk8</artifactId>
+          <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test</artifactId>
+          <version>${kotlin.version}</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src/main/kotlin</sourceDirectory>
@@ -133,13 +144,15 @@
         <executions>
           <execution>
             <id>compile</id>
-            <goals>
+              <phase>compile</phase>
+              <goals>
               <goal>compile</goal>
             </goals>
           </execution>
           <execution>
             <id>test-compile</id>
-            <goals>
+              <phase>test-compile</phase>
+              <goals>
               <goal>test-compile</goal>
             </goals>
           </execution>
@@ -153,7 +166,7 @@
         </dependencies>
         <configuration>
           <javaParameters>true</javaParameters>
-          <jvmTarget>11</jvmTarget>
+          <jvmTarget>1.8</jvmTarget>
           <compilerPlugins>
             <plugin>all-open</plugin>
           </compilerPlugins>

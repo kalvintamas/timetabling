@@ -5,6 +5,4 @@ import org.acme.domain.Student
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
-class StudentRepository : PanacheRepository<Student> {
-
-}
+class StudentRepository : PanacheRepository<Student> { }

@@ -1,4 +1,4 @@
-package org.acme
+package org.acme.constraints
 
 import org.acme.domain.Student
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore

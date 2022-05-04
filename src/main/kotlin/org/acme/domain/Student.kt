@@ -1,6 +1,7 @@
 package org.acme.domain
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity
+import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider
 import org.optaplanner.core.api.domain.variable.PlanningVariable
 import javax.persistence.*
 import javax.transaction.Transactional
@@ -15,20 +16,20 @@ class Student {
 
     lateinit var name: String
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "HaveTimeFor",
         joinColumns = [JoinColumn(name = "student_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "timeslot_id", referencedColumnName = "id")])
-    //@ValueRangeProvider(id = "timeslotRange")
-    var possibleTimeslots: MutableList<Timeslot>? = null
+    @ValueRangeProvider(id = "timeslotRange")
+    var possibleTimeslots: List<Timeslot>? = null
 
     @PlanningVariable(valueRangeProviderRefs = ["timeslotRange"])
     @OneToOne
     var timeslot: Timeslot? = null
 
-    constructor(name: String, timeslotRange: MutableList<Timeslot>) {
+    constructor(name: String, possibleTimeslots: List<Timeslot>) {
         this.name = name
-        this.possibleTimeslots = timeslotRange
+        this.possibleTimeslots = possibleTimeslots
     }
 
     constructor(name: String) {

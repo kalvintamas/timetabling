@@ -3,12 +3,11 @@ package org.acme.domain
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty
 import org.optaplanner.core.api.domain.solution.PlanningScore
 import org.optaplanner.core.api.domain.solution.PlanningSolution
-import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore
 
 @PlanningSolution
 class TimeTable {
-    @ValueRangeProvider(id = "timeslotRange")
+//    @ValueRangeProvider(id = "timeslotRange")
     lateinit var timeslotList: List<Timeslot>
     @PlanningEntityCollectionProperty
     lateinit var studentList: List<Student>
